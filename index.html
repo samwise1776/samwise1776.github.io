@@ -3,32 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Samwise Apps</title>
+
+<title>Serve</title>
 
 <style>
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 body {
+    margin: 0;
     min-height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
     background:
-        radial-gradient(circle at top left, #392d8f, transparent 40%),
-        radial-gradient(circle at bottom right, #126a8a, transparent 35%),
-        #090b18;
+        radial-gradient(circle at top left, #303080, transparent 40%),
+        radial-gradient(circle at bottom right, #075f78, transparent 40%),
+        #090b16;
+    color: white;
 }
 
 header {
-    padding: 28px 7%;
+    height: 80px;
+    padding: 0 7%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     border-bottom: 1px solid rgba(255,255,255,.1);
-    backdrop-filter: blur(15px);
 }
 
 .logo {
@@ -37,14 +38,13 @@ header {
 }
 
 .logo span {
-    color: #7c8cff;
+    color: #6e8cff;
 }
 
 nav a {
-    color: #ccc;
+    color: #bbb;
     text-decoration: none;
     margin-left: 25px;
-    font-weight: bold;
 }
 
 nav a:hover {
@@ -52,119 +52,174 @@ nav a:hover {
 }
 
 .hero {
-    padding: 100px 7% 70px;
-    max-width: 1100px;
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    align-items: center;
+
+    padding: 60px 7%;
 }
 
-.hero .tag {
-    display: inline-block;
-    padding: 8px 14px;
-    border: 1px solid #5966ff;
-    border-radius: 30px;
-    color: #aeb5ff;
-    margin-bottom: 22px;
-}
-
-.hero h1 {
-    font-size: clamp(48px, 8vw, 90px);
-    line-height: .95;
+.content {
     max-width: 900px;
 }
 
-.hero h1 span {
-    background: linear-gradient(90deg,#7c8cff,#49d9ff);
+.badge {
+    display: inline-block;
+
+    padding: 9px 15px;
+
+    border-radius: 999px;
+
+    border: 1px solid #6274ff;
+
+    color: #aab4ff;
+
+    margin-bottom: 25px;
+}
+
+h1 {
+    margin: 0;
+
+    font-size: clamp(
+        60px,
+        10vw,
+        120px
+    );
+
+    line-height: .9;
+}
+
+.gradient {
+    background:
+        linear-gradient(
+            90deg,
+            #7585ff,
+            #39d8ff
+        );
+
     -webkit-background-clip: text;
     color: transparent;
 }
 
-.hero p {
+p {
+    max-width: 650px;
+
+    margin-top: 30px;
+
     color: #aaa;
-    font-size: 20px;
+
+    font-size: 21px;
     line-height: 1.7;
-    max-width: 700px;
-    margin-top: 28px;
 }
 
-main {
-    padding: 20px 7% 100px;
-}
+.buttons {
+    display: flex;
+    gap: 16px;
 
-.section-title {
-    margin-bottom: 30px;
-}
-
-.section-title h2 {
-    font-size: 36px;
-}
-
-.section-title p {
-    color: #999;
-    margin-top: 8px;
-}
-
-.apps {
-    display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-    gap: 25px;
-}
-
-.app {
-    background: linear-gradient(
-        145deg,
-        rgba(255,255,255,.09),
-        rgba(255,255,255,.025)
-    );
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 24px;
-    padding: 28px;
-    transition: .25s;
-}
-
-.app:hover {
-    transform: translateY(-6px);
-    border-color: #7180ff;
-    box-shadow: 0 20px 50px rgba(0,0,0,.35);
-}
-
-.icon {
-    width: 65px;
-    height: 65px;
-    display: grid;
-    place-items: center;
-    border-radius: 18px;
-    background: linear-gradient(135deg,#5865f2,#38cfff);
-    font-size: 30px;
-    margin-bottom: 22px;
-}
-
-.app h3 {
-    font-size: 25px;
-}
-
-.app p {
-    color: #aaa;
-    line-height: 1.6;
-    margin: 12px 0 24px;
+    margin-top: 40px;
 }
 
 .button {
     display: inline-block;
+
+    padding: 17px 27px;
+
+    border-radius: 14px;
+
     text-decoration: none;
-    color: white;
-    font-weight: bold;
-    padding: 12px 20px;
-    border-radius: 12px;
-    background: linear-gradient(90deg,#5865f2,#587cff);
+
+    font-weight: 800;
+
+    font-size: 17px;
+
+    transition: .2s;
 }
 
-.button:hover {
+.create {
+    background:
+        linear-gradient(
+            90deg,
+            #5865f2,
+            #437cff
+        );
+
+    color: white;
+
+    box-shadow:
+        0 12px 40px
+        rgba(60,90,255,.25);
+}
+
+.create:hover {
+    transform: translateY(-3px);
     filter: brightness(1.15);
 }
 
-footer {
-    padding: 30px 7%;
-    color: #777;
-    border-top: 1px solid rgba(255,255,255,.08);
+.github {
+    border:
+        1px solid
+        rgba(255,255,255,.2);
+
+    color: white;
+}
+
+.github:hover {
+    background:
+        rgba(255,255,255,.08);
+}
+
+.apps-title {
+    padding: 80px 7% 20px;
+
+    font-size: 40px;
+}
+
+.apps {
+    padding: 20px 7% 100px;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(260px,1fr)
+        );
+
+    gap: 25px;
+}
+
+.card {
+    padding: 30px;
+
+    border-radius: 24px;
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+}
+
+.card h2 {
+    margin-top: 0;
+}
+
+.card p {
+    font-size: 16px;
+}
+
+.open {
+    display: inline-block;
+
+    margin-top: 10px;
+
+    color: #8ba1ff;
+
+    text-decoration: none;
+
+    font-weight: bold;
 }
 </style>
 </head>
@@ -172,65 +227,98 @@ footer {
 <body>
 
 <header>
+
     <div class="logo">
-        Samwise<span>Apps</span>
+        <span>Serve</span>
     </div>
 
     <nav>
         <a href="/">Home</a>
         <a href="#apps">Apps</a>
-        <a href="https://github.com/samwise1776">GitHub</a>
+        <a href="https://github.com/samwise1776">
+            GitHub
+        </a>
     </nav>
+
 </header>
 
+
 <section class="hero">
-    <div class="tag">⚡ Apps made by Samwise</div>
 
-    <h1>
-        One place for
-        <span>all my apps.</span>
-    </h1>
+    <div class="content">
 
-    <p>
-        Browse, launch, and use my apps directly from the web.
-        More projects will be added here as I build them.
-    </p>
-</section>
+        <div class="badge">
+            ⚡ Build • Serve • Launch
+        </div>
 
-<main id="apps">
+        <h1>
+            Your apps.<br>
+            <span class="gradient">
+                One place.
+            </span>
+        </h1>
 
-    <div class="section-title">
-        <h2>Apps</h2>
-        <p>Choose an app to launch it.</p>
-    </div>
+        <p>
+            Serve is the home for your apps.
+            Create new projects, open existing
+            apps, and launch everything from
+            one website.
+        </p>
 
-    <div class="apps">
-
-        <div class="app">
-            <div class="icon">⚙️</div>
-
-            <h3>App Creator</h3>
-
-            <p>
-                Create and experiment with apps using the
-                App Creator project.
-            </p>
+        <div class="buttons">
 
             <a
-                class="button"
-                href="/apps/app-creator/"
+                class="button create"
+                href="./apps/app-creator/"
             >
-                Open App →
+                + Create App
             </a>
+
+            <a
+                class="button github"
+                href="https://github.com/samwise1776"
+            >
+                GitHub
+            </a>
+
         </div>
 
     </div>
 
-</main>
+</section>
 
-<footer>
-    © 2026 Samwise Apps
-</footer>
+
+<h2
+    id="apps"
+    class="apps-title"
+>
+    Your Apps
+</h2>
+
+
+<section class="apps">
+
+    <div class="card">
+
+        <h2>
+            App Creator
+        </h2>
+
+        <p>
+            Create a new application
+            directly from Serve.
+        </p>
+
+        <a
+            class="open"
+            href="./apps/app-creator/"
+        >
+            Open →
+        </a>
+
+    </div>
+
+</section>
 
 </body>
 </html>
