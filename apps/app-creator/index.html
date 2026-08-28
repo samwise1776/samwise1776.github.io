@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Appcreator - App Creator Studio</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #101114;
+            color: white;
+        }
+
+        header {
+            padding: 25px;
+            border-bottom: 1px solid #292b31;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        main {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .panel {
+            background: #181a1f;
+            border: 1px solid #292b31;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            background: #0f1013;
+            color: white;
+            border: 1px solid #363942;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        #dropZone {
+            border: 2px dashed #555b69;
+            border-radius: 12px;
+            padding: 50px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        #dropZone:hover,
+        #dropZone.dragging {
+            border-color: #6c8cff;
+            background: #1b1e29;
+        }
+
+        button {
+            border: 0;
+            border-radius: 8px;
+            padding: 12px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background: #5875ff;
+            color: white;
+        }
+
+        button:hover {
+            background: #4865ef;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #fileList {
+            margin-top: 20px;
+        }
+
+        .file {
+            background: #101114;
+            border-radius: 7px;
+            padding: 10px;
+            margin-top: 5px;
+            color: #cbd0dc;
+        }
+
+        #result {
+            display: none;
+        }
+
+        #download {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            background: #25b864;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        #download:hover {
+            background: #1fa255;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>Appcreator</h1>
+</header>
+
+<main>
+
+    <div class="panel">
+
+        <h2>Create an App</h2>
+
+        <label for="name">
+            App Name
+        </label>
+
+        <input
+            id="name"
+            type="text"
+            placeholder="My Awesome App"
+        >
+
+        <label for="description">
+            Description
+        </label>
+
+        <textarea
+            id="description"
+            placeholder="What does your app do?"
+        ></textarea>
+
+    </div>
+
+    <div class="panel">
+
+        <h2>App Files</h2>
+
+        <div id="dropZone">
+            <strong>Drag & Drop files or folders here</strong>
+
+            <p>
+                or click to choose files
+            </p>
+
+            <input
+                id="fileInput"
+                type="file"
+                multiple
+                hidden
+            >
+        </div>
+
+        <div id="fileList"></div>
+
+    </div>
+
+    <div class="panel">
+
+        <button id="create">
+            Create App
+        </button>
+
+    </div>
+
+    <div id="result" class="panel">
+
+        <h2>App Created!</h2>
+
+        <p id="resultText"></p>
+
+        <a
+            id="download"
+            href="#"
+        >
+            Download App
+        </a>
+
+    </div>
+
+</main>
+
+<script src="./public/app.js"></script>
+
+</body>
+</html>

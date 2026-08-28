@@ -1,217 +1,236 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samwise Apps</title>
 
-    <title>Appcreator - App Creator Studio</title>
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+body {
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    background:
+        radial-gradient(circle at top left, #392d8f, transparent 40%),
+        radial-gradient(circle at bottom right, #126a8a, transparent 35%),
+        #090b18;
+}
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #101114;
-            color: white;
-        }
+header {
+    padding: 28px 7%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    backdrop-filter: blur(15px);
+}
 
-        header {
-            padding: 25px;
-            border-bottom: 1px solid #292b31;
-        }
+.logo {
+    font-size: 28px;
+    font-weight: 900;
+}
 
-        header h1 {
-            margin: 0;
-        }
+.logo span {
+    color: #7c8cff;
+}
 
-        main {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+nav a {
+    color: #ccc;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: bold;
+}
 
-        .panel {
-            background: #181a1f;
-            border: 1px solid #292b31;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 20px;
-        }
+nav a:hover {
+    color: white;
+}
 
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: bold;
-        }
+.hero {
+    padding: 100px 7% 70px;
+    max-width: 1100px;
+}
 
-        input,
-        textarea {
-            width: 100%;
-            background: #0f1013;
-            color: white;
-            border: 1px solid #363942;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
+.hero .tag {
+    display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #5966ff;
+    border-radius: 30px;
+    color: #aeb5ff;
+    margin-bottom: 22px;
+}
 
-        textarea {
-            min-height: 100px;
-            resize: vertical;
-        }
+.hero h1 {
+    font-size: clamp(48px, 8vw, 90px);
+    line-height: .95;
+    max-width: 900px;
+}
 
-        #dropZone {
-            border: 2px dashed #555b69;
-            border-radius: 12px;
-            padding: 50px 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: 0.2s;
-        }
+.hero h1 span {
+    background: linear-gradient(90deg,#7c8cff,#49d9ff);
+    -webkit-background-clip: text;
+    color: transparent;
+}
 
-        #dropZone:hover,
-        #dropZone.dragging {
-            border-color: #6c8cff;
-            background: #1b1e29;
-        }
+.hero p {
+    color: #aaa;
+    font-size: 20px;
+    line-height: 1.7;
+    max-width: 700px;
+    margin-top: 28px;
+}
 
-        button {
-            border: 0;
-            border-radius: 8px;
-            padding: 12px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            background: #5875ff;
-            color: white;
-        }
+main {
+    padding: 20px 7% 100px;
+}
 
-        button:hover {
-            background: #4865ef;
-        }
+.section-title {
+    margin-bottom: 30px;
+}
 
-        button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
+.section-title h2 {
+    font-size: 36px;
+}
 
-        #fileList {
-            margin-top: 20px;
-        }
+.section-title p {
+    color: #999;
+    margin-top: 8px;
+}
 
-        .file {
-            background: #101114;
-            border-radius: 7px;
-            padding: 10px;
-            margin-top: 5px;
-            color: #cbd0dc;
-        }
+.apps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 25px;
+}
 
-        #result {
-            display: none;
-        }
+.app {
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,.09),
+        rgba(255,255,255,.025)
+    );
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 24px;
+    padding: 28px;
+    transition: .25s;
+}
 
-        #download {
-            display: inline-block;
-            margin-top: 10px;
-            text-decoration: none;
-            background: #25b864;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-        }
+.app:hover {
+    transform: translateY(-6px);
+    border-color: #7180ff;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35);
+}
 
-        #download:hover {
-            background: #1fa255;
-        }
-    </style>
+.icon {
+    width: 65px;
+    height: 65px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+    background: linear-gradient(135deg,#5865f2,#38cfff);
+    font-size: 30px;
+    margin-bottom: 22px;
+}
+
+.app h3 {
+    font-size: 25px;
+}
+
+.app p {
+    color: #aaa;
+    line-height: 1.6;
+    margin: 12px 0 24px;
+}
+
+.button {
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    padding: 12px 20px;
+    border-radius: 12px;
+    background: linear-gradient(90deg,#5865f2,#587cff);
+}
+
+.button:hover {
+    filter: brightness(1.15);
+}
+
+footer {
+    padding: 30px 7%;
+    color: #777;
+    border-top: 1px solid rgba(255,255,255,.08);
+}
+</style>
 </head>
 
 <body>
 
 <header>
-    <h1>Appcreator</h1>
+    <div class="logo">
+        Samwise<span>Apps</span>
+    </div>
+
+    <nav>
+        <a href="/">Home</a>
+        <a href="#apps">Apps</a>
+        <a href="https://github.com/samwise1776">GitHub</a>
+    </nav>
 </header>
 
-<main>
+<section class="hero">
+    <div class="tag">⚡ Apps made by Samwise</div>
 
-    <div class="panel">
+    <h1>
+        One place for
+        <span>all my apps.</span>
+    </h1>
 
-        <h2>Create an App</h2>
+    <p>
+        Browse, launch, and use my apps directly from the web.
+        More projects will be added here as I build them.
+    </p>
+</section>
 
-        <label for="name">
-            App Name
-        </label>
+<main id="apps">
 
-        <input
-            id="name"
-            type="text"
-            placeholder="My Awesome App"
-        >
-
-        <label for="description">
-            Description
-        </label>
-
-        <textarea
-            id="description"
-            placeholder="What does your app do?"
-        ></textarea>
-
+    <div class="section-title">
+        <h2>Apps</h2>
+        <p>Choose an app to launch it.</p>
     </div>
 
-    <div class="panel">
+    <div class="apps">
 
-        <h2>App Files</h2>
+        <div class="app">
+            <div class="icon">⚙️</div>
 
-        <div id="dropZone">
-            <strong>Drag & Drop files or folders here</strong>
+            <h3>App Creator</h3>
 
             <p>
-                or click to choose files
+                Create and experiment with apps using the
+                App Creator project.
             </p>
 
-            <input
-                id="fileInput"
-                type="file"
-                multiple
-                hidden
+            <a
+                class="button"
+                href="/apps/app-creator/"
             >
+                Open App →
+            </a>
         </div>
-
-        <div id="fileList"></div>
-
-    </div>
-
-    <div class="panel">
-
-        <button id="create">
-            Create App
-        </button>
-
-    </div>
-
-    <div id="result" class="panel">
-
-        <h2>App Created!</h2>
-
-        <p id="resultText"></p>
-
-        <a
-            id="download"
-            href="#"
-        >
-            Download App
-        </a>
 
     </div>
 
 </main>
 
-<script src="/public/app.js"></script>
+<footer>
+    © 2026 Samwise Apps
+</footer>
 
 </body>
 </html>
