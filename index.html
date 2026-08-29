@@ -1,324 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Appcreate</title>
-
-<style>
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, Helvetica, sans-serif;
-    background:
-        radial-gradient(circle at top left, #303080, transparent 40%),
-        radial-gradient(circle at bottom right, #075f78, transparent 40%),
-        #090b16;
-    color: white;
-}
-
-header {
-    height: 80px;
-    padding: 0 7%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    border-bottom: 1px solid rgba(255,255,255,.1);
-}
-
-.logo {
-    font-size: 28px;
-    font-weight: 900;
-}
-
-.logo span {
-    color: #6e8cff;
-}
-
-nav a {
-    color: #bbb;
-    text-decoration: none;
-    margin-left: 25px;
-}
-
-nav a:hover {
-    color: white;
-}
-
-.hero {
-    min-height: calc(100vh - 80px);
-
-    display: flex;
-    align-items: center;
-
-    padding: 60px 7%;
-}
-
-.content {
-    max-width: 900px;
-}
-
-.badge {
-    display: inline-block;
-
-    padding: 9px 15px;
-
-    border-radius: 999px;
-
-    border: 1px solid #6274ff;
-
-    color: #aab4ff;
-
-    margin-bottom: 25px;
-}
-
-h1 {
-    margin: 0;
-
-    font-size: clamp(
-        60px,
-        10vw,
-        120px
-    );
-
-    line-height: .9;
-}
-
-.gradient {
-    background:
-        linear-gradient(
-            90deg,
-            #7585ff,
-            #39d8ff
-        );
-
-    -webkit-background-clip: text;
-    color: transparent;
-}
-
-p {
-    max-width: 650px;
-
-    margin-top: 30px;
-
-    color: #aaa;
-
-    font-size: 21px;
-    line-height: 1.7;
-}
-
-.buttons {
-    display: flex;
-    gap: 16px;
-
-    margin-top: 40px;
-}
-
-.button {
-    display: inline-block;
-
-    padding: 17px 27px;
-
-    border-radius: 14px;
-
-    text-decoration: none;
-
-    font-weight: 800;
-
-    font-size: 17px;
-
-    transition: .2s;
-}
-
-.create {
-    background:
-        linear-gradient(
-            90deg,
-            #5865f2,
-            #437cff
-        );
-
-    color: white;
-
-    box-shadow:
-        0 12px 40px
-        rgba(60,90,255,.25);
-}
-
-.create:hover {
-    transform: translateY(-3px);
-    filter: brightness(1.15);
-}
-
-.github {
-    border:
-        1px solid
-        rgba(255,255,255,.2);
-
-    color: white;
-}
-
-.github:hover {
-    background:
-        rgba(255,255,255,.08);
-}
-
-.apps-title {
-    padding: 80px 7% 20px;
-
-    font-size: 40px;
-}
-
-.apps {
-    padding: 20px 7% 100px;
-
-    display: grid;
-
-    grid-template-columns:
-        repeat(
-            auto-fit,
-            minmax(260px,1fr)
-        );
-
-    gap: 25px;
-}
-
-.card {
-    padding: 30px;
-
-    border-radius: 24px;
-
-    background:
-        rgba(255,255,255,.06);
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-}
-
-.card h2 {
-    margin-top: 0;
-}
-
-.card p {
-    font-size: 16px;
-}
-
-.open {
-    display: inline-block;
-
-    margin-top: 10px;
-
-    color: #8ba1ff;
-
-    text-decoration: none;
-
-    font-weight: bold;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>samwise1776 | Portfolio</title>
+    <style>
+        :root { --bg: #0d1117; --card: #161b22; --border: #30363d; --text: #c9d1d9; --accent: #58a6ff; }
+        body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; margin: 0; padding: 40px 20px; display: flex; justify-content: center; }
+        .container { max-width: 750px; width: 100%; }
+        header { border-bottom: 1px solid var(--border); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { color: #fff; margin: 0 0 10px 0; }
+        .tagline { font-size: 1.1rem; color: #8b949e; }
+        .grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 20px; }
+        @media(min-width: 600px) { .grid { grid-template-columns: 1fr 1fr; } }
+        .card { background: var(--card); border: 1px solid var(--border); padding: 20px; border-radius: 6px; text-decoration: none; color: inherit; transition: border-color 0.2s; }
+        .card:hover { border-color: var(--accent); }
+        .card h3 { margin: 0 0 10px 0; color: var(--accent); }
+        .card p { margin: 0; font-size: 0.9rem; color: #8b949e; line-height: 1.4; }
+    </style>
 </head>
-
 <body>
-
-<header>
-
-    <div class="logo">
-        <span>Appcreate</span>
-    </div>
-
-    <nav>
-        <a href="/">Home</a>
-        <a href="#apps">Apps</a>
-        <a href="https://github.com/samwise1776">
-            GitHub
-        </a>
-    </nav>
-
-</header>
-
-
-<section class="hero">
-
-    <div class="content">
-
-        <div class="badge">
-            ⚡ Build • Serve • Launch
-        </div>
-
-        <h1>
-            Your apps.<br>
-            <span class="gradient">
-                One place.
-            </span>
-        </h1>
-
-        <p>
-            Appcreate is the home for your apps.
-            Create new projects, open existing
-            apps, and launch everything from
-            one website.
-        </p>
-
-        <div class="buttons">
-
-            <a
-                class="button create"
-                href="https://samwise1776.github.io/app-creator/"
-            >
-                + Create App
+    <div class="container">
+        <header>
+            <h1>samwise1776</h1>
+            <p class="tagline">Young Full-Stack Developer constructing custom Java desktop ecosystems & interactive web applications.</p>
+        </header>
+        <h2>Featured Projects</h2>
+        <div class="grid">
+            <a href="https://github.com" class="card">
+                <h3>💎 Velice</h3>
+                <p>My flagship project. A custom native application ecosystem built using full-stack Java integrations.</p>
             </a>
-
-            <a
-                class="button github"
-                href="https://github.com/samwise1776"
-            >
-                GitHub
+            <a href="https://github.com/Lumi" class="card">
+                <h3>🌌 Lumi</h3>
+                <p>An independent custom programming language written entirely in Java featuring native GUI window support.</p>
             </a>
-
+            <a href="https://github.com/desktopcraft" class="card">
+                <h3>🎮 Desktopcraft</h3>
+                <p>Cross-platform desktop application systems working in tandem with web course platforms.</p>
+            </a>
+            <a href="https://github.com/gamify" class="card">
+                <h3>⚡ Gamify</h3>
+                <p>Interactive web application engine applying gamified mechanics to maximize user productivity workflows.</p>
+            </a>
         </div>
-
     </div>
-
-</section>
-
-
-<h2
-    id="apps"
-    class="apps-title"
->
-    Your Apps
-</h2>
-
-
-<section class="apps">
-
-    <div class="card">
-
-        <h2>
-            App Creator
-        </h2>
-
-        <p>
-            Create a new application
-            directly from Appcreate.
-        </p>
-
-        <a
-            class="open"
-            href="/app-creator/"
-        >
-            Open →
-        </a>
-
-    </div>
-
-</section>
-
 </body>
 </html>
