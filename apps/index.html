@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>samwise1776 Software Hub — Flagships & Downloads</title>
+  <meta name="description" content="Flagship software, programming languages, desktop tools, games and experiments by samwise1776. Download Lumi, Desktopcraft and more.">
+  <meta name="author" content="samwise1776">
+  <meta property="og:title" content="samwise1776 Software Hub">
+  <meta property="og:description" content="Download flagship apps, languages, desktop tools and experiments by samwise1776.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://samwise1776.github.io/apps/">
+  <link rel="me" href="https://github.com/samwise1776">
+  <style>
+    :root{
+      --bg:#070b12;
+      --panel:#0d1420;
+      --panel2:#111b2b;
+      --line:#223047;
+      --text:#eef4ff;
+      --muted:#9fb0c8;
+      --blue:#63a4ff;
+      --purple:#a78bfa;
+      --green:#5ee6a8;
+      --gold:#ffd166;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:
+        radial-gradient(circle at 15% 0%,rgba(99,164,255,.16),transparent 32rem),
+        radial-gradient(circle at 90% 8%,rgba(167,139,250,.13),transparent 28rem),
+        var(--bg);
+      color:var(--text);
+      font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      line-height:1.55;
+    }
+    a{color:inherit}
+    .wrap{width:min(1160px,calc(100% - 32px));margin:auto}
+    nav{
+      display:flex;justify-content:space-between;align-items:center;
+      padding:22px 0;gap:20px;
+    }
+    .brand{font-weight:800;letter-spacing:.2px;text-decoration:none}
+    .navlinks{display:flex;gap:18px;flex-wrap:wrap}
+    .navlinks a{color:var(--muted);text-decoration:none;font-size:.95rem}
+    .navlinks a:hover{color:#fff}
+    .hero{padding:76px 0 58px;text-align:center}
+    .eyebrow{
+      display:inline-block;border:1px solid var(--line);background:rgba(13,20,32,.7);
+      border-radius:999px;padding:7px 12px;color:var(--blue);font-size:.82rem;font-weight:700;
+      letter-spacing:.08em;text-transform:uppercase
+    }
+    h1{font-size:clamp(2.6rem,7vw,5.6rem);line-height:.98;margin:22px auto 20px;max-width:950px}
+    .hero p{max-width:760px;margin:0 auto;color:var(--muted);font-size:clamp(1rem,2vw,1.22rem)}
+    .hero-actions{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+    .button{
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      min-height:44px;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:750;
+      border:1px solid var(--line);background:var(--panel2)
+    }
+    .button.primary{background:#f4f7ff;color:#07101d;border-color:#f4f7ff}
+    .button.blue{background:#1672e6;color:white;border-color:#1672e6}
+    .button:hover{transform:translateY(-1px)}
+    section{padding:34px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:18px}
+    .section-head h2{font-size:clamp(1.65rem,3vw,2.35rem);margin:0}
+    .section-head p{margin:0;color:var(--muted);max-width:620px}
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+    .card{
+      grid-column:span 4;background:linear-gradient(180deg,rgba(17,27,43,.96),rgba(13,20,32,.96));
+      border:1px solid var(--line);border-radius:16px;padding:22px;position:relative;overflow:hidden
+    }
+    .card.big{grid-column:span 4;min-height:340px}
+    .card.small{grid-column:span 3}
+    .card:before{
+      content:"";position:absolute;inset:0 0 auto 0;height:2px;
+      background:linear-gradient(90deg,var(--blue),var(--purple),transparent)
+    }
+    .badge{
+      display:inline-flex;padding:5px 9px;border-radius:999px;border:1px solid var(--line);
+      color:var(--muted);font-size:.76rem;font-weight:700;margin-bottom:14px
+    }
+    .badge.ready{color:var(--green)}
+    .badge.web{color:var(--gold)}
+    .card h3{font-size:1.55rem;margin:0 0 8px}
+    .card p{color:var(--muted);margin:0 0 16px}
+    .features{padding:0;margin:0 0 20px 18px;color:#c7d4e6;font-size:.93rem}
+    .actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:auto}
+    .actions .button{font-size:.88rem;padding:8px 12px;min-height:38px}
+    .platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:14px 0 18px}
+    .platforms a{
+      text-decoration:none;border:1px solid var(--line);background:#0a111c;border-radius:9px;
+      padding:9px 10px;text-align:center;font-weight:700;font-size:.86rem
+    }
+    .platforms a:hover{border-color:var(--blue)}
+    .note{
+      margin-top:18px;padding:16px 18px;border:1px solid var(--line);background:rgba(13,20,32,.8);
+      border-radius:12px;color:var(--muted)
+    }
+    .spotlight{
+      margin-top:36px;border:1px solid var(--line);border-radius:18px;padding:24px;
+      background:linear-gradient(125deg,rgba(99,164,255,.10),rgba(167,139,250,.08))
+    }
+    .spotlight h2{margin:0 0 8px}
+    .spotlight p{color:var(--muted);max-width:760px}
+    footer{border-top:1px solid var(--line);margin-top:50px;padding:28px 0 42px;color:var(--muted);font-size:.9rem}
+    @media(max-width:900px){
+      .card.big{grid-column:span 12}
+      .card.small{grid-column:span 6}
+    }
+    @media(max-width:620px){
+      .wrap{width:min(100% - 22px,1160px)}
+      nav{align-items:flex-start}
+      .navlinks{justify-content:flex-end}
+      .hero{padding-top:48px}
+      .card.small{grid-column:span 12}
+      .section-head{display:block}
+      .section-head p{margin-top:8px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <a class="brand" href="/">samwise1776</a>
+      <div class="navlinks">
+        <a href="#flagships">Flagships</a>
+        <a href="#more">More projects</a>
+        <a href="https://github.com/samwise1776">GitHub</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <span class="eyebrow">Software hub</span>
+      <h1>Apps, languages and tools built to be used.</h1>
+      <p>Start with the flagships below. Download a desktop build, try a live project, or grab the source and make it your own.</p>
+      <div class="hero-actions">
+        <a class="button primary" href="#flagships">Explore flagships</a>
+        <a class="button" href="https://github.com/samwise1776?tab=repositories">All repositories</a>
+        <button class="button blue" type="button" onclick="sharePage()">Share this page</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="flagships">
+        <div class="section-head">
+          <div><h2>Flagships</h2></div>
+          <p>The projects with the clearest reason to try them right now.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card big">
+            <span class="badge ready">DOWNLOAD READY</span>
+            <h3>✨ Lumi</h3>
+            <p>A small programming language written in Java with variables, conditionals, files, user input, Swing GUI support and a built-in IDE.</p>
+            <ul class="features">
+              <li>Self-contained builds — Java does not need to be installed separately</li>
+              <li>Windows, macOS, Unix and Flatpak packages</li>
+              <li>VS Code extension and built-in IDE</li>
+            </ul>
+            <div class="platforms">
+              <a href="https://github.com/samwise1776/Lumi/releases/latest/download/Lumi-windows-x64.zip">Windows</a>
+              <a href="https://github.com/samwise1776/Lumi/releases/latest/download/Lumi-unix-x64.tar.gz">Linux / Unix</a>
+              <a href="https://github.com/samwise1776/Lumi/releases/latest/download/Lumi-macos.zip">macOS</a>
+              <a href="https://github.com/samwise1776/Lumi/releases/latest/download/Lumi.flatpak">Flatpak</a>
+            </div>
+            <div class="actions">
+              <a class="button" href="https://github.com/samwise1776/Lumi">View project</a>
+              <a class="button" href="https://github.com/samwise1776/Lumi/releases/latest">Latest release</a>
+            </div>
+          </article>
+
+          <article class="card big">
+            <span class="badge ready">DESKTOP + WEB</span>
+            <h3>🎓 Desktopcraft</h3>
+            <p>An interactive desktop-app learning platform with 2,500 guided lessons across Java Swing, Tkinter, WinForms, Qt Widgets and Electron.</p>
+            <ul class="features">
+              <li>Editable examples, challenges, quizzes and simulator output</li>
+              <li>XP, progress, projects, App Maker and community tools</li>
+              <li>Desktop package plus a live web edition</li>
+            </ul>
+            <div class="actions">
+              <a class="button blue" href="https://samwise1776.github.io/desktopcraft/">Try online</a>
+              <a class="button" href="https://raw.githubusercontent.com/samwise1776/desktopcraft/main/downloads/Desktopcraft-desktop.zip">Download desktop ZIP</a>
+              <a class="button" href="https://raw.githubusercontent.com/samwise1776/desktopcraft/main/downloads/Desktopcraft.jar">Download JAR</a>
+              <a class="button" href="https://github.com/samwise1776/desktopcraft">GitHub</a>
+            </div>
+          </article>
+
+          <article class="card big">
+            <span class="badge">DEVELOPER PROJECT</span>
+            <h3>⚡ Multip</h3>
+            <p>A unified programming language for apps, websites and backends, with UI components, a server model, standard library and VS Code tooling.</p>
+            <ul class="features">
+              <li>Declarative desktop and browser UI syntax</li>
+              <li>CLI commands, components, server routes and examples</li>
+              <li>Standard library and editor extension</li>
+            </ul>
+            <div class="actions">
+              <a class="button blue" href="https://github.com/samwise1776/multip/archive/refs/heads/main.zip">Download source</a>
+              <a class="button" href="https://github.com/samwise1776/multip">View project</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="note">
+          <strong>Download labels are literal:</strong> packaged apps are marked as desktop downloads; projects without an installer are clearly marked as source downloads.
+        </div>
+      </section>
+
+      <section id="more">
+        <div class="section-head">
+          <div><h2>More from the ecosystem</h2></div>
+          <p>Games, utilities, developer tools and experiments. These are secondary projects, so the flagship choices stay obvious.</p>
+        </div>
+
+        <div class="grid">
+          <article class="card small">
+            <span class="badge">JAVA</span>
+            <h3>OmniDesk</h3>
+            <p>A Java desktop GitHub repository organizer for projects, files, images and README management.</p>
+            <div class="actions">
+              <a class="button" href="https://github.com/samwise1776/OmniDesk/archive/refs/heads/main.zip">Source ZIP</a>
+              <a class="button" href="https://github.com/samwise1776/OmniDesk">Repo</a>
+            </div>
+          </article>
+
+          <article class="card small">
+            <span class="badge">PYTHON</span>
+            <h3>MDtoGUI</h3>
+            <p>A Markdown-to-GUI experiment for turning simple document-like syntax into interactive interfaces.</p>
+            <div class="actions">
+              <a class="button" href="https://github.com/samwise1776/MDtoGUI/archive/refs/heads/main.zip">Source ZIP</a>
+              <a class="button" href="https://github.com/samwise1776/MDtoGUI">Repo</a>
+            </div>
+          </article>
+
+          <article class="card small">
+            <span class="badge ready">RUNNABLE JAR</span>
+            <h3>FindMorePets</h3>
+            <p>A Java game project available as source and as a runnable JAR.</p>
+            <div class="actions">
+              <a class="button blue" href="https://raw.githubusercontent.com/samwise1776/FindMorePets/main/FindMorePets.jar">Download JAR</a>
+              <a class="button" href="https://github.com/samwise1776/FindMorePets">Repo</a>
+            </div>
+          </article>
+
+          <article class="card small">
+            <span class="badge">PYTHON</span>
+            <h3>Utilios</h3>
+            <p>A utility-focused project built around the Smart Mirror utility collection.</p>
+            <div class="actions">
+              <a class="button" href="https://github.com/samwise1776/Utilios/archive/refs/heads/main.zip">Source ZIP</a>
+              <a class="button" href="https://github.com/samwise1776/Utilios">Repo</a>
+            </div>
+          </article>
+
+          <article class="card small">
+            <span class="badge web">CATALOG</span>
+            <h3>Apploago</h3>
+            <p>A growing app ecosystem and software catalog.</p>
+            <div class="actions">
+              <a class="button" href="https://github.com/samwise1776/Apploago/archive/refs/heads/main.zip">Source ZIP</a>
+              <a class="button" href="https://github.com/samwise1776/Apploago">Repo</a>
+            </div>
+          </article>
+
+          <article class="card small">
+            <span class="badge">RESEARCH</span>
+            <h3>SNP</h3>
+            <p>Study of Numbers & Programming — experiments with named numbers and increasingly large number systems.</p>
+            <div class="actions">
+              <a class="button" href="https://github.com/samwise1776/SNP/archive/refs/heads/main.zip">Source ZIP</a>
+              <a class="button" href="https://github.com/samwise1776/SNP">Repo</a>
+            </div>
+          </article>
+
+          <article class="card small">
+            <span class="badge">GAME</span>
+            <h3>Blockverse</h3>
+            <p>A game project from the wider samwise1776 software ecosystem.</p>
+            <div class="actions">
+              <a class="button" href="https://github.com/samwise1776/Blockverse-game/archive/refs/heads/main.zip">Source ZIP</a>
+              <a class="button" href="https://github.com/samwise1776/Blockverse-game">Repo</a>
+            </div>
+          </article>
+
+          <article class="card small">
+            <span class="badge">ALL PROJECTS</span>
+            <h3>Everything else</h3>
+            <p>Browse the full GitHub profile for the rest of the experiments, languages, apps, games and libraries.</p>
+            <div class="actions">
+              <a class="button blue" href="https://github.com/samwise1776?tab=repositories">Browse all repos</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <aside class="spotlight">
+        <h2>Found something useful?</h2>
+        <p>Star the repository, share this hub, or send someone directly to the project you think they would use. One useful project in front of the right person matters more than a giant list nobody knows how to start.</p>
+        <div class="actions">
+          <button class="button blue" type="button" onclick="sharePage()">Share software hub</button>
+          <a class="button" href="https://github.com/samwise1776">Follow on GitHub</a>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      Built and maintained by <a href="https://github.com/samwise1776">samwise1776</a>.
+    </footer>
+  </div>
+
+  <script>
+    async function sharePage() {
+      const data = {
+        title: "samwise1776 Software Hub",
+        text: "Apps, programming languages, desktop tools and experiments by samwise1776.",
+        url: "https://samwise1776.github.io/apps/"
+      };
+      if (navigator.share) {
+        try { await navigator.share(data); return; } catch (e) {}
+      }
+      try {
+        await navigator.clipboard.writeText(data.url);
+        alert("Software hub link copied.");
+      } catch (e) {
+        prompt("Copy this link:", data.url);
+      }
+    }
+  </script>
+</body>
+</html>
