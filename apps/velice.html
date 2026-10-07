@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d18">
+  <meta name="description" content="Meet Velice: an open-source, C-inspired programming language with pattern matching, classes and native GUI tools. Build something remarkable.">
+  <meta name="author" content="samwise1776">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Velice — Code with possibility">
+  <meta property="og:description" content="A free, open-source language for writing expressive programs and desktop apps. Built by samwise1776.">
+  <meta property="og:url" content="https://samwise1776.github.io/apps/velice.html">
+  <meta property="og:image" content="https://raw.githubusercontent.com/samwise1776/velice/main/docs/velice-logo.svg">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://samwise1776.github.io/apps/velice.html">
+  <link rel="icon" type="image/svg+xml" href="https://raw.githubusercontent.com/samwise1776/velice/main/docs/velice-logo.svg">
+  <title>Velice — Code with possibility</title>
+  <style>
+    :root{--bg:#0b0d18;--bg2:#111420;--surface:#151827;--surface2:#1b1f31;--line:#303449;--text:#f5f6ff;--muted:#a5aac0;--soft:#d1d4e2;--purple:#9388ff;--mint:#56dfbd;--orange:#ffb986;--radius:18px}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:85px}
+    body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text);line-height:1.55;overflow-x:hidden}
+    ::selection{background:var(--purple);color:#080817} a{color:inherit} button{font:inherit}
+    a:focus-visible,button:focus-visible{outline:3px solid var(--mint);outline-offset:4px}
+    .container{width:min(1160px,calc(100% - 48px));margin-inline:auto}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .bar{position:sticky;top:0;z-index:100;background:rgba(11,13,24,.86);backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.075)}
+    .nav{display:flex;align-items:center;justify-content:space-between;min-height:76px;gap:20px}
+    .logo{display:flex;align-items:center;gap:11px;text-decoration:none;font-size:1.26rem;font-weight:850;letter-spacing:-.05em}
+    .logo svg{width:38px;height:38px;flex:none;filter:drop-shadow(0 4px 14px rgba(147,136,255,.2))}
+    .logo small{color:#757eaa;font-size:.57rem;font-weight:700;letter-spacing:.08em;margin-left:2px;vertical-align:super}
+    .nav-links{display:flex;align-items:center;gap:30px}
+    .nav-links a{text-decoration:none;color:var(--soft);font-size:.89rem;font-weight:570;transition:color .2s}
+    .nav-links a:hover{color:white}
+    .nav-cta{border:1px solid #555779;border-radius:9px;padding:10px 15px;color:white!important;background:#24263a}
+    .nav-cta:hover{border-color:var(--purple)!important}
+    .menu-toggle{display:none;cursor:pointer;color:white;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:7px 12px}
+    .hero-wrap{position:relative;isolation:isolate;border-bottom:1px solid rgba(255,255,255,.05);overflow:hidden}
+    .hero-wrap::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 660px 500px at 82% 45%,rgba(111,94,234,.21),transparent 72%),radial-gradient(ellipse 500px 450px at 14% 6%,rgba(44,156,143,.09),transparent 74%);z-index:-2}
+    .hero-wrap::after{content:"";position:absolute;inset:0;opacity:.14;z-index:-1;background-image:linear-gradient(#777d9a 1px,transparent 1px),linear-gradient(90deg,#777d9a 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(90deg,transparent 5%,black 58%,black 85%,transparent)}
+    .hero{padding:112px 0 116px;display:grid;grid-template-columns:1.01fr 1fr;align-items:center;gap:50px}
+    .eyebrow{display:inline-flex;gap:9px;align-items:center;border:1px solid #44435f;border-radius:50px;padding:7px 13px;background:rgba(25,27,44,.74);color:#d3cef9;font-size:.78rem;font-weight:750;letter-spacing:.025em}
+    .pulse{width:8px;height:8px;display:inline-block;border-radius:50%;background:var(--mint);box-shadow:0 0 0 4px rgba(86,223,189,.11)}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(3.7rem,6.2vw,6.65rem);line-height:.985;letter-spacing:-.085em;margin:28px 0 24px;font-weight:820}
+    .shine{background:linear-gradient(105deg,#a59cff 8%,#8d8cff 45%,#5ce1bc 96%);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{max-width:520px;color:#b5bad0;font-size:1.075rem;line-height:1.85;margin-bottom:30px}
+    .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+    .btn{border:1px solid #3c4056;border-radius:11px;display:inline-flex;align-items:center;justify-content:center;gap:9px;text-decoration:none;padding:13px 20px;font-weight:750;font-size:.92rem;transition:transform .2s,border-color .2s,background .2s;min-height:48px;cursor:pointer}
+    .btn:hover{transform:translateY(-2px);border-color:#8e89ca}.btn-primary{color:#111122;background:linear-gradient(120deg,#aaa1ff,#7bdaec);border-color:transparent;box-shadow:0 12px 38px rgba(117,104,235,.16)}
+    .btn-secondary{background:#1c1e2c;color:#eeeefe}
+    .hero-foot{display:flex;gap:15px;flex-wrap:wrap;margin-top:27px;color:#9199b0;font-size:.79rem}
+    .hero-foot span:not(:last-child)::after{content:"·";padding-left:15px;color:#626a80}
+    .demo-window{position:relative;transform:rotate(-1deg);box-shadow:0 35px 90px rgba(0,0,0,.42),0 0 100px rgba(137,121,255,.08);border:1px solid #4a4b67;background:#0f1220;border-radius:15px;overflow:hidden;min-width:0}
+    .demo-window::before{content:"";position:absolute;inset:0;pointer-events:none;border-radius:15px;box-shadow:inset 0 1px rgba(255,255,255,.1)}
+    .win-top{height:49px;border-bottom:1px solid #32364d;background:#191c2c;display:flex;align-items:center;gap:8px;padding:0 17px}
+    .dot{width:10px;height:10px;border-radius:50%;background:#fa777c}.dot:nth-child(2){background:#fac96b}.dot:nth-child(3){background:#57cf9d}
+    .file-name{font-size:.75rem;color:#979db6;flex:1;text-align:center;margin-right:40px}
+    .code-display{font:500 .86rem/1.85 ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;margin:0;padding:26px 23px;overflow-x:auto;white-space:pre;tab-size:4;min-height:304px}
+    .kw{color:#bcaaff}.fn{color:#80d8ff}.st{color:#b9df9c}.num{color:#ffc38d}.cm{color:#6f799a}.op{color:#e8c4ff}
+    .code-footer{border-top:1px solid #31354e;background:#171a2a;display:flex;align-items:center;justify-content:space-between;gap:15px;padding:11px 18px;font:600 .75rem ui-monospace,monospace;color:#8f98b6}
+    .code-footer .tag{color:#6be5c3}.code-footer .tag::before{content:"●";font-size:10px;margin-right:8px}
+    .section{padding:108px 0}.section.alt{background:linear-gradient(180deg,#0e1120,#0c0e19);border-block:1px solid rgba(255,255,255,.035)}
+    .kicker{font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;color:var(--mint);font-weight:850;margin:0 0 15px}
+    h2{font-size:clamp(2.35rem,4vw,3.6rem);letter-spacing:-.065em;line-height:1.13;margin:0 0 17px}
+    .section-intro{color:#aeb4c8;max-width:600px;line-height:1.8;margin-bottom:42px}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+    .feature{background:linear-gradient(155deg,#1a1c2c,#121622);border:1px solid #2e3246;border-radius:18px;padding:29px 27px;min-height:214px;transition:transform .2s,border-color .2s}
+    .feature:hover{transform:translateY(-4px);border-color:#6e6997}
+    .glyph{width:43px;height:43px;border:1px solid #46415e;border-radius:11px;display:grid;place-items:center;font:800 1.1rem ui-monospace,monospace;color:#b5abff;background:#27233e;margin-bottom:26px}
+    .feature:nth-child(2) .glyph,.feature:nth-child(5) .glyph{color:#72e2c7;background:#1b3334;border-color:#365c5a}
+    .feature h3{font-size:1.08rem;letter-spacing:-.025em;margin:0 0 9px}
+    .feature p{color:#a1a8bd;font-size:.9rem;line-height:1.7;margin:0}
+    .split{display:grid;grid-template-columns:.83fr 1.17fr;gap:70px;align-items:center}
+    .steps{display:grid;gap:17px;margin-top:29px}
+    .step{display:flex;align-items:flex-start;gap:15px;color:#bec4d5;font-size:.94rem}
+    .step b{display:grid;place-items:center;border:1px solid #48536a;color:var(--mint);width:30px;height:30px;flex:0 0 30px;border-radius:9px;font-size:.8rem}
+    .step strong{display:block;color:white;font-size:.95rem;margin-bottom:3px}
+    .step p{margin:0;font-size:.86rem;line-height:1.6;color:#a6adc2}
+    .terminal{border:1px solid #383a51;border-radius:15px;background:#101320;box-shadow:0 24px 68px rgba(0,0,0,.25);overflow:hidden;min-width:0}
+    .terminal-head{display:flex;align-items:center;justify-content:space-between;padding:15px 20px;background:#1b1e2f;border-bottom:1px solid #34374a;color:#c4c5d2;font-size:.8rem;font-weight:700}
+    .copy{background:#262b41;color:#d8d9ed;border:1px solid #42465d;cursor:pointer;border-radius:8px;font-size:.76rem;font-weight:750;padding:6px 11px;transition:background .2s}
+    .copy:hover{background:#393d60}
+    .terminal pre{margin:0;padding:24px 22px;font:500 .83rem/2 ui-monospace,SFMono-Regular,Menlo,monospace;overflow-x:auto;white-space:pre;color:#ecedf8}
+    .t-comment{color:#77819d}.t-command{color:#77dfbc}
+    .note{font-size:.8rem;color:#888fa8;margin:16px 0 0;line-height:1.7}
+    .examples-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:25px}
+    .tabs{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    .tab{border:1px solid #3b3e52;background:#191b2b;color:#b3b7cc;border-radius:9px;padding:9px 15px;cursor:pointer;font-weight:750;font-size:.82rem;transition:background .2s,color .2s}
+    .tab.active{background:#35334f;color:#fff;border-color:#746ead}.tab:hover{color:#fff}
+    .example-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch}
+    .example-grid .terminal{display:flex;flex-direction:column}
+    .example-grid .terminal pre{flex:1;min-height:290px;font-size:.86rem;line-height:1.85}
+    .example-preview{border:1px solid #37394d;border-radius:15px;background:radial-gradient(circle at 85% 0,rgba(102,86,194,.16),transparent 60%),linear-gradient(135deg,#1e2032,#171a29);min-height:385px;padding:28px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+    .preview-label{text-transform:uppercase;color:#99a0b9;font-size:.7rem;font-weight:850;letter-spacing:.12em}
+    .preview-card{border:1px solid #3d4259;border-radius:12px;background:#101421;overflow:hidden;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+    .preview-title{background:#292f44;border-bottom:1px solid #42465b;padding:10px 14px;font-size:.79rem;font-weight:700;color:#cfd1e1}
+    .preview-body{padding:29px 25px;text-align:center;min-height:145px;display:grid;place-content:center;justify-items:center;gap:14px}
+    .preview-body strong{color:#fff;font-size:1rem}
+    .preview-button{border:1px solid #a39bff;background:#6d63bc;color:#fff;cursor:pointer;border-radius:8px;padding:9px 23px;font-weight:720;transition:background .2s}
+    .preview-button:hover{background:#8178d4}
+    .preview-output{font:500 .79rem ui-monospace,monospace;color:#74e4c1;min-height:18px}
+    .example-description{font-size:.8rem;color:#aeb5c9;line-height:1.7;margin:0}
+    .links-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+    .link-card{border:1px solid #393e53;border-radius:15px;background:#161a2a;min-height:175px;padding:26px;text-decoration:none;transition:border-color .2s,transform .2s;display:flex;flex-direction:column;justify-content:space-between}
+    .link-card:hover{border-color:var(--purple);transform:translateY(-3px)}
+    .link-card span{font-size:.8rem;color:var(--mint);font-weight:800}.link-card strong{font-size:1.15rem;letter-spacing:-.02em}.link-card p{font-size:.85rem;color:#a5abc1;margin:6px 0 0}
+    .callout{border:1px solid #58527c;border-radius:23px;padding:60px 6%;background:radial-gradient(circle at 10% 10%,rgba(141,126,255,.24),transparent 52%),radial-gradient(circle at 90% 90%,rgba(49,184,163,.15),transparent 50%),#1a1b2f;display:flex;align-items:center;justify-content:space-between;gap:35px}
+    .callout h2{margin-bottom:12px}.callout p{color:#c1c2d6;margin:0;max-width:510px}
+    footer{border-top:1px solid #292e42;padding:30px 0 50px;color:#939ab0;font-size:.83rem}
+    .footer-content{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap}.footer-content a{color:#c4cadc;text-decoration:none}.footer-content a:hover{color:var(--mint)}
+    .footer-links{display:flex;gap:21px;flex-wrap:wrap}
+    @media(max-width:990px){.hero{grid-template-columns:1fr;gap:50px;padding:80px 0}.hero h1{max-width:680px}.demo-window{max-width:700px;transform:none}.split{gap:35px}.example-grid{grid-template-columns:1fr 1fr}.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:700px){.container{width:min(100% - 34px,1160px)}.nav{min-height:68px}.menu-toggle{display:block}.nav-links{display:none;position:absolute;top:67px;left:0;right:0;background:#151727;border-bottom:1px solid #41435b;flex-direction:column;padding:20px;align-items:stretch;gap:14px}.nav-links.open{display:flex}.nav-links a{padding:6px}.hero{padding:65px 0 75px}.hero h1{font-size:clamp(3.2rem,12.5vw,5.1rem)}.section{padding:78px 0}.split>*,.example-grid>*{min-width:0}.grid,.split,.example-grid,.links-grid{grid-template-columns:minmax(0,1fr)}.feature{min-height:unset}.callout{padding:35px 25px;display:block}.callout .actions{margin-top:24px}.code-display{font-size:.75rem;padding:23px 17px;min-height:unset}.terminal pre{font-size:.74rem;padding:22px 15px}.hero-foot{gap:7px}.hero-foot span:not(:last-child)::after{padding-left:7px}.example-preview{min-height:280px}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important;animation:none!important}}
+  </style>
+</head>
+<body>
+  <header class="bar">
+    <div class="container nav">
+      <a class="logo" href="#home" aria-label="Velice home">
+        <svg viewBox="0 0 32 32" aria-hidden="true"><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#2a2a3e"/><stop offset="1" stop-color="#1e1e2e"/></linearGradient><linearGradient id="v" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#7c6cf0"/><stop offset="1" stop-color="#38d9a9"/></linearGradient></defs><rect x="1" y="1" width="30" height="30" rx="6" fill="url(#bg)" stroke="#3a3a52"/><path d="M9 10 L16 22 L23 10" fill="none" stroke="url(#v)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 24 L8 20M28 24 L24 20" stroke="#5a5a78" stroke-width="2" stroke-linecap="round"/></svg>
+        Velice <small>0.1.0</small>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="nav-links">☰ Menu</button>
+      <nav class="nav-links" id="nav-links" aria-label="Main navigation">
+        <a href="#features">Features</a><a href="#start">Get started</a><a href="#examples">Examples</a><a href="#resources">Docs</a>
+        <a class="nav-cta" href="https://github.com/samwise1776/velice" target="_blank" rel="noopener noreferrer">★ View on GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="hero-wrap" id="home">
+      <div class="container hero">
+        <div>
+          <div class="eyebrow"><span class="pulse"></span> FREE · OPEN SOURCE · MIT LICENSE</div>
+          <h1>Code with<br><span class="shine">possibility.</span></h1>
+          <p class="lead">Meet <strong style="color:white">Velice</strong> — an expressive, C-inspired programming language for turning ideas into programs. Build with functions, classes, pattern matching, and desktop GUI tools.</p>
+          <div class="actions"><a class="btn btn-primary" href="#start">Get started <span aria-hidden="true">↗</span></a><a class="btn btn-secondary" href="https://github.com/samwise1776/velice/releases/download/v1.0.1/velice.zip">↓ Download source</a></div>
+          <div class="hero-foot"><span>Python 3.10+</span><span>No extra interpreter packages</span><span>Made by samwise1776</span></div>
+        </div>
+        <div class="demo-window" aria-label="Example Velice code">
+          <div class="win-top"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="file-name">fib.velice</span></div>
+          <pre class="code-display"><span class="cm"># Elegant logic. Real results.</span>
+<span class="kw">fn</span> <span class="fn">fib</span>(n) {
+    <span class="kw">return match</span> n {
+        n <span class="kw">if</span> n &lt; <span class="num">2</span> <span class="op">=&gt;</span> n,
+        _ <span class="op">=&gt;</span> <span class="fn">fib</span>(n - <span class="num">1</span>) + <span class="fn">fib</span>(n - <span class="num">2</span>),
+    }
+}
+
+<span class="fn">print</span>(<span class="st">"fib(10) ="</span>, <span class="fn">fib</span>(<span class="num">10</span>))
+
+<span class="cm"># → fib(10) = 55</span></pre>
+          <div class="code-footer"><span>⌁ Velice source</span><span class="tag">Build something new</span></div>
+        </div>
+      </div>
+    </div>
+    <section class="section" id="features"><div class="container">
+      <p class="kicker">Built for the curious</p><h2>Small syntax.<br>Big ambitions.</h2>
+      <p class="section-intro">From a quick script to an interactive desktop window, Velice gives you expressive tools without a complicated interpreter setup.</p>
+      <div class="grid">
+        <article class="feature"><div class="glyph">{ }</div><h3>Familiar syntax</h3><p>Braces, readable functions, loops, and a C-family feel that makes experimentation approachable.</p></article>
+        <article class="feature"><div class="glyph">=&gt;</div><h3>Pattern matching</h3><p>Express branches and decisions using match expressions and guarded patterns.</p></article>
+        <article class="feature"><div class="glyph">◇</div><h3>Classes &amp; structs</h3><p>Organize larger projects with object-oriented features, inheritance, traits, and structs.</p></article>
+        <article class="feature"><div class="glyph">▣</div><h3>Native desktop GUI</h3><p>Use Tk-backed windows, buttons, inputs, canvas drawing, dialogs, and event handlers.</p></article>
+        <article class="feature"><div class="glyph">|&gt;</div><h3>Functional tools</h3><p>Work with closures, pipelines, map, filter, and reduce as part of the language.</p></article>
+        <article class="feature"><div class="glyph">&lt;/&gt;</div><h3>Free to explore</h3><p>Open source under the MIT license, with runnable examples, tests, and a VS Code extension.</p></article>
+      </div>
+    </div></section>
+    <section class="section alt" id="start"><div class="container split">
+      <div><p class="kicker">Get started in minutes</p><h2>Your first line of Velice awaits.</h2><p class="section-intro">No sign-up or account needed. Clone the source, run the hello-world example, and start exploring the language.</p>
+        <div class="steps"><div class="step"><b>1</b><div><strong>Install Python 3.10 or newer</strong><p>Check with <code>python3 --version</code>.</p></div></div><div class="step"><b>2</b><div><strong>Get Velice</strong><p>Clone the repository from GitHub.</p></div></div><div class="step"><b>3</b><div><strong>Run your first program</strong><p>Execute the bundled hello-world example.</p></div></div></div>
+      </div>
+      <div><div class="terminal"><div class="terminal-head"><span>Terminal · Linux / macOS</span><button class="copy" data-copy="install" type="button" aria-label="Copy installation commands">Copy</button></div><pre id="install-code"><span class="t-comment"># 1. Clone Velice</span>
+<span class="t-command">$</span> git clone https://github.com/samwise1776/velice.git
+
+<span class="t-comment"># 2. Open the project</span>
+<span class="t-command">$</span> cd velice
+
+<span class="t-comment"># 3. Run hello world</span>
+<span class="t-command">$</span> python3 -m velice run examples/hello_world.velice
+
+<span class="t-comment"># Output: Hello, World!</span></pre></div>
+        <p class="note">On Windows, use your usual Python command (often <code>py -3</code>) and the corresponding shell. GUI apps may require Tk on Linux. The Velice interpreter itself needs no third-party runtime packages.</p>
+      </div>
+    </div></section>
+    <section class="section" id="examples"><div class="container">
+      <div class="examples-head"><div><p class="kicker">See it in action</p><h2>One language. Your ideas.</h2></div><div class="tabs" role="tablist" aria-label="Code examples"><button class="tab active" id="tab-gui" role="tab" aria-selected="true" aria-controls="example-code" data-example="gui">Desktop GUI</button><button class="tab" id="tab-match" role="tab" aria-selected="false" aria-controls="example-code" data-example="match">Pattern matching</button><button class="tab" id="tab-classes" role="tab" aria-selected="false" aria-controls="example-code" data-example="classes">Classes</button></div></div>
+      <div class="example-grid">
+        <div class="terminal"><div class="terminal-head"><span id="example-filename">examples/gui.velice</span><button class="copy" data-copy="example" type="button" aria-label="Copy example code">Copy</button></div><pre id="example-code" role="tabpanel" aria-labelledby="tab-gui" tabindex="0">import gui
+
+window = Window("My Application", 800, 600)
+button = Button("Click Me")
+
+button.on_click {
+    print("Hello from Velice")
+}
+
+window.add(button)
+gui.run()</pre></div>
+        <div class="example-preview"><span class="preview-label" id="preview-label">Interactive illustration · desktop GUI</span><div class="preview-card"><div class="preview-title" id="preview-title">My Application</div><div class="preview-body" id="preview-body"><strong>Made with Velice ✨</strong><button type="button" class="preview-button" id="preview-button">Click Me</button><span class="preview-output" id="preview-output" aria-live="polite"></span></div></div><p class="example-description" id="example-description">This is an interactive illustration of the GUI example, not an interpreter running in your browser. Run the code locally to create the real window.</p></div>
+      </div>
+    </div></section>
+    <section class="section alt" id="resources"><div class="container"><p class="kicker">Keep building</p><h2>Everything you need<br>to go further.</h2><p class="section-intro">Dive into the language specification, learn the desktop GUI library, or explore runnable examples and editor support.</p>
+      <div class="links-grid"><a class="link-card" href="https://github.com/samwise1776/velice/blob/main/docs/SPEC.md" target="_blank" rel="noopener noreferrer"><span>01 ↗</span><div><strong>Language reference</strong><p>Syntax, semantics, operators, standard library, and CLI.</p></div></a><a class="link-card" href="https://github.com/samwise1776/velice/blob/main/docs/GUI.md" target="_blank" rel="noopener noreferrer"><span>02 ↗</span><div><strong>GUI documentation</strong><p>Windows, widgets, layouts, events, and drawing.</p></div></a><a class="link-card" href="https://github.com/samwise1776/velice/tree/main/examples" target="_blank" rel="noopener noreferrer"><span>03 ↗</span><div><strong>Explore examples</strong><p>Working samples for loops, classes, GUI, and more.</p></div></a><a class="link-card" href="https://github.com/samwise1776/velice/tree/main/editor/vscode" target="_blank" rel="noopener noreferrer"><span>04 ↗</span><div><strong>VS Code extension</strong><p>Syntax highlighting, snippets, and file icons.</p></div></a><a class="link-card" href="https://github.com/samwise1776/velice/issues" target="_blank" rel="noopener noreferrer"><span>05 ↗</span><div><strong>Report an issue</strong><p>Help improve Velice by sharing bugs and feedback.</p></div></a><a class="link-card" href="https://github.com/samwise1776/velice" target="_blank" rel="noopener noreferrer"><span>06 ↗</span><div><strong>Source code</strong><p>Inspect the interpreter, contribute, or fork the project.</p></div></a></div>
+    </div></section>
+    <section class="section"><div class="container"><div class="callout"><div><p class="kicker">From a solo developer to the world</p><h2>Build the next<br><span class="shine">great thing.</span></h2><p>Velice is an independent open-source project created by samwise1776. Try it, break it, give feedback, and help shape what comes next.</p></div><div class="actions"><a class="btn btn-primary" href="https://github.com/samwise1776/velice">Explore on GitHub ↗</a></div></div></div></section>
+  </main>
+  <footer><div class="container footer-content"><div>© <span id="year">2026</span> samwise1776 · Velice is MIT licensed · Made for makers.</div><div class="footer-links"><a href="https://github.com/samwise1776">Developer</a><a href="https://samwise1776.github.io/">Portfolio</a><a href="https://github.com/samwise1776/velice/blob/main/LICENSE">License</a></div></div></footer>
+  <script>
+    'use strict';
+    const $ = (s) => document.querySelector(s);
+    $('#year').textContent = new Date().getFullYear();
+    const toggle = $('.menu-toggle');
+    const nav = $('#nav-links');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      nav.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
+    }));
+    const examples = {
+      gui: {
+        file: 'examples/gui.velice', title: 'My Application', label: 'Interactive illustration · desktop GUI',
+        code: 'import gui\n\nwindow = Window("My Application", 800, 600)\nbutton = Button("Click Me")\n\nbutton.on_click {\n    print("Hello from Velice")\n}\n\nwindow.add(button)\ngui.run()',
+        description: 'This is an interactive illustration of the GUI example, not an interpreter running in your browser. Run the code locally to create the real window.'
+      },
+      match: {
+        file: 'examples/match.velice', title: 'Terminal output', label: 'Example output · pattern matching',
+        code: 'fn classify(n) {\n    return match n {\n        0 => "zero",\n        1 => "one",\n        n if n < 0 => "negative",\n        n if n > 100 => "huge",\n        _ => "normal",\n    }\n}\n\nprint(classify(0))\nprint(classify(500))',
+        description: 'Match values and use guards to branch clearly. The output preview shows what these calls return.'
+      },
+      classes: {
+        file: 'examples/classes.velice', title: 'Terminal output', label: 'Example output · classes',
+        code: 'class Animal {\n    fn init(name) {\n        self.name = name\n    }\n    fn speak() {\n        print(self.name + " makes a sound")\n    }\n}\n\nlet a = Animal("Generic")\na.speak()',
+        description: 'Create a class with methods and state. Extend the idea with inheritance and larger programs.'
+      }
+    };
+    let active = 'gui';
+    const code = $('#example-code');
+    const previewBody = $('#preview-body');
+    function escapeHtml(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function highlight(s){
+      const re = /#[^\n]*|"(?:\\.|[^"\\])*"|\b(?:fn|return|match|if|class|let|import|self)\b|\b(?:print|Window|Button|Animal|gui|run|init|speak)\b|\b\d+\b/g;
+      let pos = 0, out = '', m;
+      while((m = re.exec(s)) !== null){
+        out += escapeHtml(s.slice(pos,m.index));
+        const v = m[0];
+        const kind = v[0]==='#'?'cm':v[0]==='"'?'st':/^\d/.test(v)?'num':/^(fn|return|match|if|class|let|import|self)$/.test(v)?'kw':'fn';
+        out += '<span class="'+kind+'">'+escapeHtml(v)+'</span>'; pos = re.lastIndex;
+      }
+      return out + escapeHtml(s.slice(pos));
+    }
+    function showExample(name){
+      if(!examples[name]) return;
+      active = name;
+      const ex = examples[name];
+      code.innerHTML = highlight(ex.code);
+      code.setAttribute('aria-labelledby', 'tab-'+name);
+      $('#example-filename').textContent = ex.file;
+      $('#preview-label').textContent = ex.label;
+      $('#preview-title').textContent = ex.title;
+      $('#example-description').textContent = ex.description;
+      document.querySelectorAll('.tab').forEach(t=>{
+        const selected=t.dataset.example===name;
+        t.classList.toggle('active',selected);
+        t.setAttribute('aria-selected',String(selected)); t.tabIndex = selected ? 0 : -1;
+      });
+      if(name==='gui') previewBody.innerHTML = '<strong>Made with Velice ✨</strong><button type="button" class="preview-button" id="preview-button">Click Me</button><span class="preview-output" id="preview-output" aria-live="polite"></span>';
+      else if(name==='match') previewBody.innerHTML = '<strong style="font-family:monospace">&gt; zero<br>&gt; huge</strong>';
+      else previewBody.innerHTML = '<strong style="font-family:monospace">&gt; Generic makes a sound</strong>';
+      const b = $('#preview-button');
+      if(b) b.addEventListener('click',()=>{$('#preview-output').textContent = '> Hello from Velice';});
+    }
+    document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>showExample(t.dataset.example)));
+    document.querySelector('.tabs').addEventListener('keydown',event=>{
+      if(!['ArrowRight','ArrowLeft','Home','End'].includes(event.key)) return;
+      const all = [...document.querySelectorAll('.tab')];
+      let i=all.findIndex(t=>t.dataset.example===active);
+      i = event.key==='Home'?0:event.key==='End'?all.length-1:(i + (event.key==='ArrowRight'?1:-1)+all.length)%all.length;
+      showExample(all[i].dataset.example); all[i].focus(); event.preventDefault();
+    });
+    const install = 'git clone https://github.com/samwise1776/velice.git\ncd velice\npython3 -m velice run examples/hello_world.velice';
+    document.querySelectorAll('.copy').forEach(button=>button.addEventListener('click',async()=>{
+      const value=button.dataset.copy==='install'?install:examples[active].code;
+      try {
+        if(navigator.clipboard && window.isSecureContext) await navigator.clipboard.writeText(value);
+        else {
+          const textarea=document.createElement('textarea');textarea.value=value;textarea.style.position='fixed';textarea.style.left='-9999px';document.body.appendChild(textarea);textarea.select();
+          if(!document.execCommand('copy')) throw Error('Copy unavailable');textarea.remove();
+        }
+        const original=button.textContent;button.textContent='Copied ✓';setTimeout(()=>{button.textContent=original;},1800);
+      }catch(e){button.textContent='Select code to copy';setTimeout(()=>{button.textContent='Copy';},2200);}
+    }));
+    showExample('gui');
+  </script>
+</body>
+</html>
